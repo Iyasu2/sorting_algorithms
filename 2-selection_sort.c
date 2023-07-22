@@ -16,10 +16,9 @@ void selection_sort(int *array, size_t size)
 	for (i = 0; i < size - 1; i++)
 	{
 		swap = 0;
+		count = i;
 		for (j = i; j < size - 1; j++)
 		{
-			if (i == j)
-				count = i;
 			if (array[count] > array[j + 1])
 			{
 				count = j + 1;
