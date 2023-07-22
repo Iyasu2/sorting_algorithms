@@ -8,34 +8,57 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	int count = countnodes(&list)
-	if (count < 2 || list == NULL)
-		return
+	listint_t *new_node = NULL;
+	listint_t *temp = NULL;
+	int count = countnodes(list);
 
-	for (i = 0; i < count - 1; i++)
+	if (count < 2 || list == NULL || *list == NULL)
+		return;
+
+	new_node = *list;
+	new_node = new_node->next;
+	while (new_node)
 	{
-		if (list->prev == NULL)
+		while (new_node->prev && new_node->n < (new_node->prev)->n)
 		{
-			list = list->next;
-		}
-
-		for (j = 0; j < i; j++)
-		{
-			if list->n < list->prev->n
+			temp = new_node;
+			if (new_node->next)
 			{
-				list->prev->next = 
-	
+				(new_node->next)->prev = temp->prev;
+			}
+			(new_node->prev)->next = temp->next;
+			new_node = new_node->prev;
+			temp->prev = new_node->prev;
+			temp->next = new_node;
+			if (new_node->prev)
+				(new_node->prev)->next = temp;
+			new_node->prev = temp;
+			if (temp->prev == NULL)
+				*list = temp;
+			print_list(*list);
+			new_node = new_node->prev;
+		}
+		new_node = new_node->next;
+	}
+
 }
 
+/**
+ * countnodes - Entry point
+ * Description: 'counting the number of nodes in a list'
+ *
+ * @list: listint_t input
+ * Return: int
+ */
 int countnodes(listint_t **list)
 {
 	int count = 0;
-	listint_t **current = list;
+	listint_t *current = *list;
 
 	while (current != NULL)
 	{
 		count++;
 		current = current->next;
 	}
-	return count
+	return (count);
 }
