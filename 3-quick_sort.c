@@ -18,8 +18,8 @@ void quick_sort(int *array, size_t size)
 /**
  * quick_recur - recursive part
  * @array: int input
- * @low: int input
- * @high: int input
+ * @left: int input
+ * @right: int input
  * @size: size_t input
  * Return: none
  */
@@ -38,8 +38,8 @@ void quick_recur(int *array, int left, int right, size_t size)
 /**
  * partition - gives us a pivot number
  * @array: int input
- * @low: int input
- * @high: int input
+ * @left: int input
+ * @right: int input
  * @size: size_t input
  * Return: pivot number
  */
@@ -50,7 +50,7 @@ int partition(int *array, int left, int right, size_t size)
 	int pivot = array[right];
 	int temp = 0;
 
-	for(;j < right; j++)
+	for (; j < right; j++)
 	{
 		if (array[j] < pivot)
 		{
